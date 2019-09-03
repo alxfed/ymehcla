@@ -53,7 +53,8 @@ column_names = ['companyId', 'name', 'category', 'type', 'description',
 
 metadata = MetaData(ymehcla_path)
 
-companies = Table('companies', metadata,
+companies = Table(
+                  'companies', metadata,
                   Column('companyId', Integer, primary_key=True),
                   Column('name', Unicode(50), default=''),
                   Column('category', Unicode(50), default=''),
@@ -75,4 +76,5 @@ companies = Table('companies', metadata,
                   Column('phone_unidentified', Unicode(50), default=''),
                   Column('website', Unicode(50), default=''),
                   Column('domain', Unicode(50), default=''),
-                  Column('email_address', Unicode(50), default=''))
+                  Column('email_address', Unicode(50), default='')
+                  )
