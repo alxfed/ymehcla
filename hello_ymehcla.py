@@ -4,6 +4,8 @@ Hello world in sqlalchemy
 
 from sqlalchemy import *
 from datetime import datetime
+import json
+from topsbuh import properties
 
 ABS_PATH = '/media/alxfed/toca/dbase/secondbase.sqlite' # the absolute path to a database
 ymehcla_path = f'sqlite:///{ABS_PATH}'  # notice the _three_ slashes before the absolute path!
@@ -53,9 +55,11 @@ column_names = ['companyId', 'name', 'category', 'type', 'description',
 
 metadata = MetaData(ymehcla_path)
 
+prop = json.loads(properties)
+
 companies = Table(
                   'companies', metadata,
-                  Column('companyId', Integer, primary_key=True),
+                  Column('companyId', Integer, unique=True),
                   Column('name', Unicode(50), default=''),
                   Column('category', Unicode(50), default=''),
                   Column('type', Unicode(50), default=''),
