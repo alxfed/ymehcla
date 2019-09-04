@@ -2,11 +2,20 @@
 From the very beginning of sqlite3
 """
 import sqlite3
+import pandas as pd
 import googlemaps
 from os import environ
 
+# Initial data
+file_path = '/media/alxfed/toca/aa-crm/companies.csv'
+companies = pd.read_csv(file_path, dtype='str')
+company_names = companies['Name']
+names = company_names.values
+print('ok')
+
+
 # Name and schema of today's log, change before the run!
-sql = '''CREATE TABLE log_today
+sql = '''CREATE TABLE log_september_4
             (
                 date text, 
                 trans text, 
@@ -20,16 +29,17 @@ conn = sqlite3.connect('/media/alxfed/toca/dbase/logbase.sqlite')
 cur = conn.cursor()
 cur.execute(sql)
 
-# main cycle is here
+# main cycle begins here
 
 values = ('2006-01-05','BUY','RHAT',100,35.14)
 
 # Insert a row of data into the log table
-cur.execute("insert into log_today values (?, ?, ?, ?, ?)", values)
+cur.execute("insert into log_september_4 values (?, ?, ?, ?, ?)", values)
 conn.commit()
 
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
+# main cycle ends here
+
+# close the connection
 conn.close()
 
 print('ok')
