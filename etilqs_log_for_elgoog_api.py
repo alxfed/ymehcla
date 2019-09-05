@@ -28,8 +28,8 @@ sql = '''CREATE TABLE log_september_4
 conb = sqlite3.connect('/media/alxfed/toca/dbase/firstbase.sqlite')
 curb = conb.cursor()
 curb.execute("select Name from companies")
-tuple = curb.fetchall()
-names_list = list(itertools.chain(*tuple))
+tuples = curb.fetchall()
+names_list = list(itertools.chain(*tuples))
 conb.close()
 
 # Open connection and create a table
