@@ -3,6 +3,7 @@ From the very beginning of sqlite3
 """
 import sqlite3
 import pandas as pd
+import itertools
 import googlemaps
 from os import environ
 
@@ -24,8 +25,16 @@ sql = '''CREATE TABLE log_september_4
                 price real
             )
 '''
+conb = sqlite3.connect('/media/alxfed/toca/dbase/firstbase.sqlite')
+curb = conb.cursor()
+curb.execute("select Name from companies")
+tuple = curb.fetchall()
+names_list = list(itertools.chain(*tuple))
+conb.close()
+
 # Open connection and create a table
 conn = sqlite3.connect('/media/alxfed/toca/dbase/logbase.sqlite')
+r = sqlite3.enable_callback_tracebacks(True)
 cur = conn.cursor()
 cur.execute(sql)
 
