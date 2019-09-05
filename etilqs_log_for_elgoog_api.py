@@ -2,19 +2,23 @@
 From the very beginning of sqlite3
 """
 import sqlite3
-import pandas as pd
 import itertools
 import googlemaps
 from os import environ
 
-# Initial data
-file_path = '/media/alxfed/toca/aa-crm/companies.csv'
-companies = pd.read_csv(file_path, dtype='str')
-company_names = companies['Name']
-names = company_names.values
-print('ok')
+def RequestCompanyList(names_list):
+    connb = sqlite3.connect('/media/alxfed/toca/dbase/firstbase.sqlite')
+    cursb = connb.cursor()
+    cursb.execute("select Name from companies")
+    tuples = cursb.fetchall()
+    for tuple in tuples
+        name, = tuple
+        if name.endswith('Llc') or name.endswith('Inc')
+    names_list = list(itertools.chain(*tuples))
+    connb.close()
 
 
+names_list = list()
 # Name and schema of today's log, change before the run!
 sql = '''CREATE TABLE log_september_4
             (
@@ -25,12 +29,6 @@ sql = '''CREATE TABLE log_september_4
                 price real
             )
 '''
-conb = sqlite3.connect('/media/alxfed/toca/dbase/firstbase.sqlite')
-curb = conb.cursor()
-curb.execute("select Name from companies")
-tuples = curb.fetchall()
-names_list = list(itertools.chain(*tuples))
-conb.close()
 
 # Open connection and create a table
 conn = sqlite3.connect('/media/alxfed/toca/dbase/logbase.sqlite')
