@@ -7,13 +7,27 @@ import googlemaps
 from os import environ
 
 def RequestCompanyList(names_list):
+    test_list = ['Llc', 'Llc.', 'llc', ',llc.',
+                 'Inc', 'Inc.', ',inc', ',inc.'
+                 'Co', 'Co.', ',co', ',co.', 'Corp', 'Corp.',
+                 ',corp', 'corp.',
+                 'Company.', 'company.', 'Company', 'company',
+                 'Incorporated', 'Incorporated.',
+                 'incorporated', 'incorporated.'
+                 'Assoc', 'assoc',
+                 'Specialists', 'specialists',
+                 'Service', 'Service.', 'service', 'service.'
+                 'Services', 'services',
+                 'Lp', 'Lp.',
+                 'Center', 'Center.']
     connb = sqlite3.connect('/media/alxfed/toca/dbase/firstbase.sqlite')
     cursb = connb.cursor()
     cursb.execute("select Name from companies")
     tuples = cursb.fetchall()
-    for tuple in tuples
+    for tuple in tuples:
         name, = tuple
-        if name.endswith('Llc') or name.endswith('Inc')
+        if name.endswith('Llc') or name.endswith('Inc'):
+            pass
     names_list = list(itertools.chain(*tuples))
     connb.close()
 
